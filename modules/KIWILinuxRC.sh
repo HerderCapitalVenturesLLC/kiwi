@@ -7161,6 +7161,17 @@ function setupConfigFiles {
 	rm -rf /config
 }
 #======================================
+# setupMachineID
+#--------------------------------------
+function setupMachineID {
+    # /.../
+    # This method can be used to handle the machine ID
+    # in /etc/machine-id and/or /var/lib/dbus/machine-id
+    # It is actually implemented as a custom hook script
+    # ----
+    runHook handleMachineID "$@"
+}
+#======================================
 # activateImage
 #--------------------------------------
 function activateImage {
@@ -7216,12 +7227,6 @@ function activateImage {
 		if [ -d /isofrom ];then
 			mkdir -p /mnt/isofrom && mount --move /isofrom /mnt/isofrom
 		fi
-	fi
-	#======================================
-	# create dbus machine id
-	#--------------------------------------
-	if which dbus-uuidgen &>/dev/null;then
-		dbus-uuidgen > /mnt/var/lib/dbus/machine-id
 	fi
 	#======================================
 	# move device nodes

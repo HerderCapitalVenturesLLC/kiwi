@@ -130,17 +130,22 @@ if [ "$systemIntegrity" = "clean" ];then
 fi
 
 #======================================
-# 12) kernelCheck
+# 12) setup machine id
+#--------------------------------------
+setupMachineID
+
+#======================================
+# 13) kernelCheck
 #--------------------------------------
 kernelCheck
 
 #======================================
-# 13) create origin snapshot if possible
+# 14) create origin snapshot if possible
 #--------------------------------------
 createOriginSnapshot
 
 #======================================
-# 14) kill udev
+# 15) kill udev
 #--------------------------------------
 udevSystemStop
 umountSystemFilesystems

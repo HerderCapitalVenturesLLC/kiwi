@@ -136,7 +136,12 @@ if [ "$systemIntegrity" = "clean" ];then
 fi
 
 #======================================
-# 13) setup static network
+# 13) setup machine id
+#--------------------------------------
+setupMachineID
+
+#======================================
+# 14) setup static network
 #--------------------------------------
 if [ "$systemIntegrity" = "clean" ];then
 	setupNetworkInterfaceS390
@@ -145,17 +150,17 @@ if [ "$systemIntegrity" = "clean" ];then
 fi
 
 #======================================
-# 14) kernelCheck
+# 15) kernelCheck
 #--------------------------------------
 kernelCheck
 
 #======================================
-# 15) create origin snapshot if possible
+# 16) create origin snapshot if possible
 #--------------------------------------
 createOriginSnapshot
 
 #======================================
-# 16) kill udev
+# 17) kill udev
 #--------------------------------------
 udevSystemStop
 umountSystemFilesystems
