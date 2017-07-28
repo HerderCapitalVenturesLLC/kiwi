@@ -4394,10 +4394,14 @@ sub setupBootLoaderConfiguration {
 			} else {
 				print $FD "search --file /boot/$this->{mbrid} --set"."\n";
 			}
-			if (($firmware eq "efi") || ($firmware eq "uefi")) {
-				print $FD 'set prefix=($root)/boot/grub2-efi'."\n";
-			} else {
-				print $FD 'set prefix=($root)/boot/grub2'."\n";
+			if ($firmware !~ /ec2/) {
+				if ((! $isxen) || ($isxen && $xendomain eq "dom0")) {
+					if (($firmware eq "efi") || ($firmware eq "uefi")) {
+						print $FD 'set prefix=($root)/boot/grub2-efi'."\n";
+					} else {
+						print $FD 'set prefix=($root)/boot/grub2'."\n";
+					}
+				}
 			}
 			# print $FD "set debug=all\n";
 			print $FD "set default=$defaultBootNr\n";
